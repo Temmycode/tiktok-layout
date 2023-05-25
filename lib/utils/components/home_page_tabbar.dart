@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/views/search_page.dart';
 
 class HomePageTabBar extends StatelessWidget {
   final TabController tabController;
@@ -31,7 +32,16 @@ class HomePageTabBar extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.search, color: Colors.white)
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const SearchPage(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.search),
+                color: Colors.white)
           ],
         ),
       ),

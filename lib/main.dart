@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok/utils/components/following.dart';
-import 'package:tiktok/utils/components/for_you.dart';
-import 'package:tiktok/utils/components/home_page_tabbar.dart';
-import 'package:tiktok/views/user_account_page.dart';
+import 'package:flutter/services.dart';
+import 'package:tiktok/views/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +12,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.black,
+      ),
+    );
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           iconTheme: const IconThemeData(color: Colors.black)),
-      home: const TikTok(),
+      home: const HomePage(),
     );
   }
 }
