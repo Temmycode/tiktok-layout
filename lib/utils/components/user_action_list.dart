@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tiktok/providers/video_interaction_providers.dart';
 import 'package:tiktok/utils/components/user_icon.dart';
 
 class UserActionList extends StatelessWidget {
   final VoidCallback? onPressedFollow;
   final VoidCallback? onPressed;
+  final VoidCallback? onPressedLike;
+  bool like;
   final int? noOfLikes;
   final int? noOfComments;
   final int? noOfSaved;
   final int? noOfShared;
-  const UserActionList({
+  UserActionList({
     super.key,
+    required this.like,
     this.onPressedFollow,
     this.onPressed,
     this.noOfLikes,
     this.noOfComments,
     this.noOfSaved,
     this.noOfShared,
+    this.onPressedLike,
   });
 
   @override
@@ -29,22 +35,28 @@ class UserActionList extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Column(
-          children: [
-            const Icon(
-              Icons.favorite,
-              size: 32,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 3,
-            ),
-            Text(
-              '12.1K',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-          ],
-        ),
+        Consumer(builder: (context, ref, _) {
+          // final isLiked = ref.watch(likeVideoProvider);
+          return Column(
+            children: [
+              GestureDetector(
+                onTap: onPressedLike,
+                child: Icon(
+                  Icons.favorite,
+                  size: 32,
+                  color: like == true ? Colors.red : Colors.white,
+                ),
+              ),
+              const SizedBox(
+                height: 3,
+              ),
+              Text(
+                noOfLikes.toString(),
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ],
+          );
+        }),
         const SizedBox(
           height: 15,
         ),
@@ -59,7 +71,7 @@ class UserActionList extends StatelessWidget {
               height: 3,
             ),
             Text(
-              '1320',
+              noOfComments.toString(),
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ],
@@ -78,7 +90,7 @@ class UserActionList extends StatelessWidget {
               height: 3,
             ),
             Text(
-              '120',
+              noOfSaved.toString(),
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ],
@@ -97,7 +109,7 @@ class UserActionList extends StatelessWidget {
               height: 3,
             ),
             Text(
-              '10',
+              noOfShared.toString(),
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ],

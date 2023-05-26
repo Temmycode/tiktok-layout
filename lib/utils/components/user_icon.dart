@@ -10,14 +10,18 @@ class UserIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
-      width: 45,
+      height: 60,
+      width: 50,
       child: Stack(
         children: [
-          GestureDetector(onTap: onPressed, child: const CircleAvatar()),
+          GestureDetector(
+              onTap: onPressed,
+              child: const CircleAvatar(
+                radius: 30,
+              )),
           Positioned(
               right: 16,
-              bottom: 2,
+              bottom: 0,
               child: GestureDetector(
                 onTap: onFollowPressed,
                 child: Container(

@@ -11,6 +11,8 @@ class Following extends StatelessWidget {
 
   final int? noOfComments;
 
+  bool like;
+
   final int? noOfLikes;
 
   final int? noOfSaved;
@@ -18,8 +20,9 @@ class Following extends StatelessWidget {
   final int? noOfShared;
 
   final PageController controller;
-  const Following({
+  Following({
     super.key,
+    required this.like,
     required this.onPressed,
     required this.controller,
     this.onPressedFollow,
@@ -52,6 +55,7 @@ class Following extends StatelessWidget {
                 bottom: 80,
                 right: 20,
                 child: UserActionList(
+                  like: like,
                   onPressed: onPressed,
                   onPressedFollow: onPressedFollow,
                   noOfComments: noOfComments,

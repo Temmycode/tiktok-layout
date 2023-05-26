@@ -47,6 +47,7 @@ class _TikTokState extends State<TikTok> with TickerProviderStateMixin {
                 children: [
                   // following page
                   Following(
+                    like: false,
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -59,6 +60,7 @@ class _TikTokState extends State<TikTok> with TickerProviderStateMixin {
                   // for you page
                   ForYou(
                       controller: _forYouPageController,
+                      onPressedFollow: () {},
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
